@@ -59,7 +59,7 @@
 
 <h3>Options // <small>default value</small></h3>
 <dl>
-	<dt>imageURL <small>My instagram photo ;)</small></dt>
+	<dt>imageURL // <small>My instagram photo ;)</small></dt>
 	<dd>including [http://].</dd>
 
 	<dt>width // <small>"auto"</small></dt>
