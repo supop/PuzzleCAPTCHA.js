@@ -33,33 +33,33 @@
 <ol>
 	<li>
 		Add the plugin script
-		'''
-		<script src="puzzleCAPTCHA.js"></script>
-		'''
+		
+		<pre>&lt;script src="puzzleCAPTCHA.js"&gt;&lt;/script&gt;</pre>
+		
 	</li>
 	<li>
 		Add the style
-		<pre><code><link rel="stylesheet" href="puzzleCAPTCHA.css"></code></pre>
+		<pre>&lt;link rel="stylesheet" href="puzzleCAPTCHA.css"&gt;</pre>
 	</li>
 	<li>
 		Add HTML
-		<pre><div id="PuzzleCaptcha"></div></pre>
+		<pre>&lt;div id="PuzzleCaptcha"&gt;&lt;/div&gt;</pre>
 	</li>
 	<li>
 		Call me!!
 		<pre>
-		<script>
-			$("#PuzzleCaptcha").PuzzleCAPTCHA({
-				imageURL:'http://distilleryimage2.s3.amazonaws.com/c886e1100cbe11e3a77722000a1fbc49_5.jpg'
-			});
-		</script>
+&lt;script&gt;
+	$("#PuzzleCaptcha").PuzzleCAPTCHA({
+		imageURL:'http://distilleryimage2.s3.amazonaws.com/c886e1100cbe11e3a77722000a1fbc49_5.jpg'
+	});
+&lt;/script&gt;
 		</pre>
 	</li>
 </ol>
 
 <h3>Options // <small>default value</small></h3>
 <dl>
-	<dt>imageURL <small>My instagram photo ;)</small></dt>
+	<dt>imageURL // <small>My instagram photo ;)</small></dt>
 	<dd>including [http://].</dd>
 
 	<dt>width // <small>"auto"</small></dt>
@@ -79,7 +79,9 @@
 		Using jQuery selector - 
 		<br>
 		e.g) The input tag looks like:<br>
-		<pre><input type="hidden" class="any-class-name-selector-for-input" name="the-name-that-you-want-to-confirm-on-server-side-script"></pre>
+<pre>
+&lt;input type="hidden" class="any-class-name-selector-for-input" name="the-name-that-you-want-to-confirm-on-server-side-script"&gt;
+</pre>
 		<br>
 		The value could be {targetInput:".any-class-name-selector-for-input"}
 	</dd>
@@ -92,7 +94,7 @@
 		Using jQuery selector - 
 		<br>
 		e.g) The button tag looks like:<br>
-			<button type="submit" disabled="true" class="any-class-name-selector-for-button" name="any-name">Submit!!</button>
+		<pre>&lt;button type="submit" disabled="true" class="any-class-name-selector-for-button" name="any-name"&gt;Submit!!&lt;/button&gt;</pre>
 		<br>
 		The value could be {targetButton:".any-class-name-selector-for-button"}
 
