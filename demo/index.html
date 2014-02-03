@@ -3,213 +3,66 @@
 	<head>
 	<title>PuzzleCAPTCHA</title>
 	
+	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 
+	<!-- jQuery CDN -->
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
-<style>
+	<!-- PuzzleCAPTCHA Style -->
+	<link rel="stylesheet" href="puzzleCAPTCHA.css">
 
-.imageCaptcha{}
-
-.imageCaptchaBox{padding:0;overflow:hidden;position:relative;}
-.imageCaptchaBox img{display:block;margin:0;padding:0;}
-
-.imageCaptchaBlock{display:inline-block;position:absolute;width:25%;height:50%;border:1px solid #fff;}
-
-.imageCaptchaBox:hover .imageCaptchaBlock{background-color:#555;opacity:0.3;}
-
-.imageCaptchaBlock-1{top:0;left:0;border-width:0px 1px 1px 0;}
-.imageCaptchaBlock-2{top:0;left:25%;border-width:0px 1px 1px 0;}
-.imageCaptchaBlock-3{top:0;left:50%;border-width:0px 1px 1px 0;}
-.imageCaptchaBlock-4{top:0;left:75%;border-width:0px 1px 1px 0;}
-
-.imageCaptchaBlock-5{top:50%;left:0;border-width:0px 1px 1px 0;}
-.imageCaptchaBlock-6{top:50%;left:25%;border-width:0px 1px 1px 0;}
-.imageCaptchaBlock-7{top:50%;left:50%;border-width:0px 1px 1px 0;}
-.imageCaptchaBlock-8{top:50%;left:75%;border-width:0px 1px 1px 0;}
-
-.imageCaptchaItem{float:left;padding:0;margin-left:20px;width:62px;height:44px;overflow:hidden;margin-top:23px;}
-    .imageCaptcha .imageCaptchaItem > img{width:245px;height:86px;max-width:245px;margin:0;}
-
-.imageCaptcha .imageCaptchaItem-1 > img{}
-.imageCaptcha .imageCaptchaItem-2 > img{margin-left:-62px;}
-.imageCaptcha .imageCaptchaItem-3 > img{margin-left:-124px;}
-.imageCaptcha .imageCaptchaItem-4 > img{margin-left:-186px;}
-
-.imageCaptcha .imageCaptchaItem-5 > img{margin-top:-44px;}
-.imageCaptcha .imageCaptchaItem-6 > img{margin-top:-44px;margin-left:-62px;}
-.imageCaptcha .imageCaptchaItem-7 > img{margin-top:-44px;margin-left:-124px;}
-.imageCaptcha .imageCaptchaItem-8 > img{margin-top:-44px;margin-left:-186px;}
+	<!-- PuzzleCAPTCHA Plugin -->
+	<script src="puzzleCAPTCHA.js"></script>
 
 
-.imageCaptchaBlock .imageCaptchaItem{margin:0;display:none;}
-    .imageCaptchaBlock:hover .imageCaptchaItem{display:block;}
-
-
-
-.puzzleCAPTCHA{display:table;}
-	.puzzleCAPTCHA .pcBox{overflow:hidden;position:relative;border-radius:4px;border:1px solid #ccc;}
-		.puzzleCAPTCHA .pcBoxBG{display:block;margin:0;padding:0;}
-			.puzzleCAPTCHA .pcBoxBG img{}
-		.puzzleCAPTCHA .pcBoxItem{display:block;position:absolute;border-right:1px solid rgba(255,255,255,0.6);border-bottom:1px solid rgba(255,255,255,0.6);overflow:hidden;}
-				.puzzleCAPTCHA .pcBox:hover .pcBoxItem{background-color:rgba(0,0,0,0.4);}
-			.puzzleCAPTCHA .pcBoxItem img{position:absolute;display:none;opacity:0.7;}
-				.puzzleCAPTCHA .pcBoxItem:hover img{display:block;}
-	.puzzleCAPTCHA .pcAnswer{overflow:hidden;position:relative;}
-	
-</style>
+	<style>
+		/* Styles for the form */
+		form{max-width:400px;margin:0 auto;}
+			.formEmail{border-radius:4px 4px 0 0;}
+			.formPassword{border-radius:0 0 4px 4px;margin-top:-1px;}
+	</style>
 
 	</head>
 	<body>
 
-	<div class="container">
+		<div class="container">
 
-		<form class="form-signin" role="form" style="max-width:400px;margin:0 auto;">
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<input type="email" class="form-control" placeholder="Email address" required autofocus>
-			<br>
-			<input type="password" class="form-control" placeholder="Password" required>
-			<label class="checkbox">
-				<input type="checkbox" value="remember-me"> Remember me
-			</label>
+			<form class="form-signin" role="form">
+				<h2 class="form-signin-heading">Please sign in</h2>
+				<input type="email" class="form-control formEmail" placeholder="Email address" >
+				
+				<input type="password" class="form-control formPassword" placeholder="Password" >
+				<label class="checkbox">
+					<input type="checkbox" value="remember-me"> Remember me
+				</label>
+<br>
+				<label>Validation value:</label>
+				<input type="text" name="" class="validationValue">
+<br><br>
 
-
-
-
-				<br />
 				<label>Are you a human?</label>
 
 				<div id="PuzzleCaptcha"></div>
 
-	<br>
+<br>
 
-			<button class="btn btn-lg btn-primary btn-block" disabled="true"  type="submit">Sign in</button>
-		</form>
+				<button class="btn btn-lg btn-primary btn-block btnSubmit" disabled="true"  type="submit">Sign in</button>
+			</form>
 
-	</div> <!-- /container -->
+		</div>
 
-<br><br><br><br>
+<br><br>
 
 		<script>
 
-		/*
-			$(document).ready(function(){
-				$(".imageCaptcha").attr("data-value",Math.floor(Math.random()*9)+1);
-				
-				tmpV=$(".imageCaptcha").attr("data-value");
-				$(".imageCaptchaItem").addClass("imageCaptchaItem-"+tmpV);
-				$(".imageCaptchaItem").clone().appendTo('.imageCaptchaBlock');
-				$(".imageCaptchaBlock .imageCaptchaItem").removeClass("thumbnail");
-				
-				$(".imageCaptchaBlock").click(function(e){
-					if($(this).attr("data-value")==$(".imageCaptcha").attr("data-value")){
-						$(".btn").prop("disabled",false);
-						$(".imageCaptchaBlock").remove();
-					}
-				});
+			$("#PuzzleCaptcha").PuzzleCAPTCHA({
+				rows:3,
+				targetInput:'.validationValue',
+				targetVal:'Validated!!',
+				targetButton:'.btnSubmit'
 			});
-			*/
 
-
-
-
-
-			(function ( $ ) {
-
-				$.fn.PuzzleCAPTCHA = function( options ) {
-
-					var sets = $.extend({
-						imageURL: "http://distilleryimage2.s3.amazonaws.com/c886e1100cbe11e3a77722000a1fbc49_5.jpg",
-						width: "auto",
-						height: "auto",
-						columns: 3,
-						rows: 2,
-						targetInput: null,
-						targetVal: null,
-						targetButton: null
-					}, options );
-
-					var tmpObj=this;
-					tmpObj.addClass("puzzleCAPTCHA");
-					tmpObj.append('<div class="pcBox"><div class="pcBoxBG"><img src="'+sets.imageURL+'" style="width:'+sets.width+';height:'+sets.height+';"></div></div> <div class="pcAnswer"></div>');
-
-					//imageURL
-					//var img = new Image();
-					//img.src = sets.imageURL;
-
-					tmpObj.find(".pcBoxBG img").load(function(){
-						//tmpObj.find(".pcBoxBG").append(tmpImg.clone());
-						tmpImg=$(this);
-
-						if(sets.width == 'auto'){
-							tmpW=tmpImg.width();
-							tmpH=tmpImg.height();
-						}else{
-							tmpW=sets.width;
-							tmpH=sets.height;
-						}
-						itemW = Math.round(tmpW/sets.columns);
-						itemH = Math.round(tmpH/sets.rows);
-
-						tmpObj.find(".pcBox").width(tmpObj.find(".pcBox").width()-1);
-						tmpObj.find(".pcBox").height(tmpObj.find(".pcBox").height()-1);
-
-						tmpAnswer=Math.floor(Math.random() * sets.columns * sets.rows);
-						//console.log(tmpAnswer);
-
-						//alert(tmpW);
-
-						//tmpImg.css({width:tmpW,height:tmpH});
-						//$(".puzzleCAPTCHA .pcBoxBG").append(tmpImg.clone());
-						//tmpImg=this;
-						var x,y,tmpItem,i;
-						//tmpItem = '<div class="pcBoxItem"></div>';
-						tmpItem = $(document.createElement("div"));
-						tmpItem.addClass("pcBoxItem");
-
-						i=0;
-
-						for(x=0;x<sets.columns;x++){
-							for(y=0;y<sets.rows;y++){
-								tmpLeft=itemW*x;
-								tmpTop=itemH*y;
-								if(i==tmpAnswer){
-									answerLeft=tmpLeft;
-									answerTop=tmpTop;
-								}
-
-								_item=tmpItem.clone().attr("data-val",i).css({
-									width:itemW,
-									height:itemH,
-									left:tmpLeft,
-									top:tmpTop
-								}).append(tmpImg.clone());
-								tmpObj.find(".pcBox").append(_item);
-
-								i++;
-							}
-						}
-						tmpObj.find(".pcBoxItem img").css({'margin-left':answerLeft*-1,'margin-top':answerTop*-1});
-						//.css({'margin-left':(itemW*x)*-1,'margin-top':(itemH*y)*-1})
-
-						tmpObj.find(".pcBoxItem").click(function(){
-							if($(this).data("val")==tmpAnswer){
-								tmpObj.find(".pcBoxItem").fadeOut(300);
-							}
-						});
-
-					});
-
-
-					return this;
-
-				};
-
-			}( jQuery ));
-
-
-			$("#PuzzleCaptcha").PuzzleCAPTCHA();
-var tmpImg;
 		</script>
 	</body>
 </html>
