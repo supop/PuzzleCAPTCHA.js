@@ -92,9 +92,7 @@
 		Using jQuery selector - 
 		<br>
 		e.g) The button tag looks like:<br>
-		<pre>
 			<button type="submit" disabled="true" class="any-class-name-selector-for-button" name="any-name">Submit!!</button>
-		</pre>
 		<br>
 		The value could be {targetButton:".any-class-name-selector-for-button"}
 
