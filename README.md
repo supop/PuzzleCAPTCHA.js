@@ -15,7 +15,7 @@
 <h2>Demo</h2>
 
 <p>Have a look at the live demo!!</p>
-<a href="http://choikangstory.com/puzzleCAPTCHA/" target="_blank">http://choikangstory.com/puzzleCAPTCHA/</a>
+<a href="http://www.choikangstory.com/puzzleCAPTCHA.html" target="_blank">http://www.choikangstory.com/puzzleCAPTCHA.html</a>
 
 <a name="PuzzleCAPTCHA-WORKS"></a>
 <h2>How it works</h2>
