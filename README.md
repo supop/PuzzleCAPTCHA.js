@@ -7,7 +7,7 @@
 <li><a href="#PuzzleCAPTCHA-DEMO">Demo</a></li>
 <li ><a href="#PuzzleCAPTCHA-WORKS">How it works</a></li>
 <li><a href="#PuzzleCAPTCHA-USE">How to use</a></li>
-</ul>
+</ul>ch
 </nav>
 
 
@@ -15,7 +15,7 @@
 <h2>Demo</h2>
 
 <p>Have a look at the live demo!!</p>
-<a href="http://www.choikangstory.com/puzzleCAPTCHA.html" target="_blank">http://www.choikangstory.com/puzzleCAPTCHA.html</a>
+<a href="http://plugins.supos.com.au/PuzzleCAPTCHA/" target="_blank">http://plugins.supos.com.au/PuzzleCAPTCHA/</a>
 
 <a name="PuzzleCAPTCHA-WORKS"></a>
 <h2>How it works</h2>
