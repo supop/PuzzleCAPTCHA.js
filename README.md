@@ -5,7 +5,7 @@
 <li><a href="#PuzzleCAPTCHA-DEMO">Demo</a></li>
 <li ><a href="#PuzzleCAPTCHA-WORKS">How it works</a></li>
 <li><a href="#PuzzleCAPTCHA-USE">How to use</a></li>
-</ul>ch
+</ul>
 </nav>
 
 
