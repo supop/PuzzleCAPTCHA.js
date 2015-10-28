@@ -1,7 +1,5 @@
 <h1>PuzzleCAPTCHA</h1>
 
-<p>I was really impressed, when I saw this fancy <a href="http://www.webdesignbeach.com/beachbar/ajax-fancy-captcha-jquery-plugin" target="_blank">Drag and Drop CAPTCHA</a>. However, it wasn't touch friendly and needed a bit of designers' touch for the icons/images.<br>Then I started thinking about how to make it better. <br>That's how it happened.</p>
-
 <nav>
 <ul>
 <li><a href="#PuzzleCAPTCHA-DEMO">Demo</a></li>
