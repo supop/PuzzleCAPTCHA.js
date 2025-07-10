@@ -111,3 +111,17 @@
 </ul>
 
 
+
+## React Component
+
+A React implementation of PuzzleCAPTCHA is provided in `PuzzleCaptcha.jsx`.
+The component relies entirely on the `styled-components` library for styling, so
+install that dependency along with React. No additional CSS file is required.
+
+```jsx
+import PuzzleCaptcha from './PuzzleCaptcha';
+
+function App() {
+  return <PuzzleCaptcha imageURL="http://distilleryimage2.s3.amazonaws.com/c886e1100cbe11e3a77722000a1fbc49_5.jpg" />;
+}
+```
