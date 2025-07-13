@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["demo/vite-demo/src/**/*", "PuzzleCaptcha.tsx"]
+  "include": ["demo/vite-demo/src/**/*", "src/**/*"]
 }

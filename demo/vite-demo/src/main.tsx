@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import PuzzleCaptcha from '../../PuzzleCaptcha.tsx';
+import PuzzleCaptcha from '../../src/PuzzleCaptcha';
 
 interface State {
   imageURL: string;

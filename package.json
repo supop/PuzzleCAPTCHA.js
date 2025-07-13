@@ -2,7 +2,7 @@
   "name": "puzzlecaptcha",
   "version": "1.0.0",
   "description": "PuzzleCAPTCHA jQuery plugin and React component",
-  "main": "puzzleCAPTCHA.js",
+  "main": "src/jquery/puzzleCAPTCHA.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
