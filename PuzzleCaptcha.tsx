@@ -1,11 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+interface PuzzleCaptchaProps {
+  imageURL?: string;
+  width?: string | number;
+  height?: string | number;
+  columns?: number;
+  rows?: number;
+  targetInput?: string | null;
+  targetVal?: string | null;
+  targetButton?: string | null;
+  onSuccess?: () => void;
+}
+
 const Wrapper = styled.div.attrs({ className: 'puzzleCAPTCHA' })`
   display: table;
 `;
 
-const Box = styled.div.attrs({ className: 'pcBox' })`
+const Box = styled.div.attrs({ className: 'pcBox' })<{
+  boxWidth: number;
+  boxHeight: number;
+}>`
   overflow: hidden;
   position: relative;
   border-radius: 4px;
@@ -27,7 +42,13 @@ const BoxBG = styled.div.attrs({ className: 'pcBoxBG' })`
   padding: 0;
 `;
 
-const BoxItem = styled.div.attrs({ className: 'pcBoxItem' })`
+const BoxItem = styled.div.attrs({ className: 'pcBoxItem' })<{
+  solved: boolean;
+  itemW: number;
+  itemH: number;
+  left: number;
+  top: number;
+}>`
   display: ${({ solved }) => (solved ? 'none' : 'block')};
   position: absolute;
   border-right: 1px solid rgba(255, 255, 255, 0.6);
@@ -49,12 +70,16 @@ const BoxItem = styled.div.attrs({ className: 'pcBoxItem' })`
   }
 `;
 
-const BoxBGImage = styled.img`
+const BoxBGImage = styled.img<{ imgw: string | number; imgh: string | number }>`
   width: ${({ imgw }) => imgw};
   height: ${({ imgh }) => imgh};
 `;
 
-const Answer = styled.div.attrs({ className: 'pcAnswer' })`
+const Answer = styled.div.attrs({ className: 'pcAnswer' })<{
+  itemW: number;
+  itemH: number;
+  mt: number;
+}>`
   overflow: hidden;
   position: relative;
   border-radius: 3px;
@@ -64,7 +89,12 @@ const Answer = styled.div.attrs({ className: 'pcAnswer' })`
   margin-top: ${({ mt }) => mt}px;
 `;
 
-const CropImage = styled.img`
+const CropImage = styled.img<{
+  left: number;
+  top: number;
+  imgw: number;
+  imgh: number;
+}>`
   margin-left: ${({ left }) => -left}px;
   margin-top: ${({ top }) => -top}px;
   width: ${({ imgw }) => imgw}px;
@@ -83,11 +113,11 @@ function PuzzleCaptcha({
   targetInput = null,
   targetVal = null,
   targetButton = null,
-  onSuccess
-}) {
-  const imgRef = useRef(null);
+  onSuccess,
+}: PuzzleCaptchaProps) {
+  const imgRef = useRef<HTMLImageElement | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const [imgSize, setImgSize] = useState({ width: 0, height: 0 });
+  const [imgSize, setImgSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   const [answer, setAnswer] = useState(0);
   const [solved, setSolved] = useState(false);
 
@@ -103,29 +133,29 @@ function PuzzleCaptcha({
   }, []);
 
   const handleLoad = () => {
-    const w = width === 'auto' ? imgRef.current.width : parseInt(width, 10);
-    const h = height === 'auto' ? imgRef.current.height : parseInt(height, 10);
+    const w = width === 'auto' ? (imgRef.current?.width || 0) : parseInt(width as string, 10);
+    const h = height === 'auto' ? (imgRef.current?.height || 0) : parseInt(height as string, 10);
     setImgSize({ width: w, height: h });
     setAnswer(Math.floor(Math.random() * columns * rows));
     setLoaded(true);
   };
 
-  const handleClick = (idx) => {
+  const handleClick = (idx: number) => {
     if (idx === answer) {
       setSolved(true);
       if (targetInput) {
-        const el = document.querySelector(targetInput);
-        if (el) el.value = targetVal;
+        const el = document.querySelector(targetInput) as HTMLInputElement | null;
+        if (el) el.value = targetVal ?? '';
       }
       if (targetButton) {
-        const el = document.querySelector(targetButton);
+        const el = document.querySelector(targetButton) as HTMLButtonElement | null;
         if (el) el.disabled = false;
       }
       if (onSuccess) onSuccess();
     }
   };
 
-  const pieces = [];
+  const pieces: { index: number; left: number; top: number }[] = [];
   if (loaded) {
     for (let x = 0; x < columns; x++) {
       for (let y = 0; y < rows; y++) {
@@ -139,7 +169,7 @@ function PuzzleCaptcha({
     }
   }
 
-  const cropProps = {
+  const cropProps: { left: number; top: number; imgw: number; imgh: number } = {
     left: answerLeft,
     top: answerTop,
     imgw: imgSize.width,
@@ -182,7 +212,7 @@ function PuzzleCaptcha({
 }
 
 if (typeof window !== 'undefined') {
-  window.PuzzleCaptcha = PuzzleCaptcha;
+  (window as any).PuzzleCaptcha = PuzzleCaptcha;
 }
 
 export default PuzzleCaptcha;

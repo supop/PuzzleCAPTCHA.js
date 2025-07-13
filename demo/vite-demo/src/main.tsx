@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import PuzzleCaptcha from '../../PuzzleCaptcha.jsx';
+import PuzzleCaptcha from '../../PuzzleCaptcha.tsx';
 
-const defaultState = {
+interface State {
+  imageURL: string;
+  width: string;
+  height: string;
+  columns: number;
+  rows: number;
+}
+
+const defaultState: State = {
   imageURL: 'http://www.choikangstory.com/test-image.jpg',
   width: 'auto',
   height: 'auto',
@@ -11,13 +19,17 @@ const defaultState = {
 };
 
 function Demo() {
-  const [props, setProps] = useState(defaultState);
-  const handleChange = (e) => {
+  const [props, setProps] = useState<State>(defaultState);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setProps((p) => ({ ...p, [name]: value }));
+    if (name === 'columns' || name === 'rows') {
+      setProps((p) => ({ ...p, [name]: parseInt(value, 10) }));
+    } else {
+      setProps((p) => ({ ...p, [name]: value }));
+    }
   };
 
-  const numberInput = (name) => (
+  const numberInput = (name: 'columns' | 'rows') => (
     <input
       type="number"
       name={name}
@@ -82,8 +94,8 @@ function Demo() {
         imageURL={props.imageURL}
         width={props.width}
         height={props.height}
-        columns={parseInt(props.columns, 10) || 1}
-        rows={parseInt(props.rows, 10) || 1}
+        columns={props.columns}
+        rows={props.rows}
       />
     </div>
   );

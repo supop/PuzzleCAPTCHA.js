@@ -114,11 +114,12 @@
 
 ## React Component
 
-A React implementation of PuzzleCAPTCHA is provided in `PuzzleCaptcha.jsx`.
-The component relies entirely on the `styled-components` library for styling, so
-install that dependency along with React. No additional CSS file is required.
+A React implementation of PuzzleCAPTCHA is provided in `PuzzleCaptcha.tsx`.
+It is written in TypeScript and relies entirely on the `styled-components`
+library for styling, so install that dependency along with React. No additional
+CSS file is required.
 
-```jsx
+```tsx
 import PuzzleCaptcha from './PuzzleCaptcha';
 
 function App() {
@@ -128,5 +129,5 @@ function App() {
 
 A demo built with [Vite](https://vitejs.dev/) lives in `demo/vite-demo`. After
 installing dependencies run `npm run dev` and open the printed URL to tweak the
-props interactively. The demo imports `PuzzleCaptcha.jsx` directly so the same
+props interactively. The demo imports `PuzzleCaptcha.tsx` directly so the same
 component source is shared between the demo and your React projects.

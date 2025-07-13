@@ -16,7 +16,7 @@
   <h1>PuzzleCaptcha React Demo</h1>
   <div id="app"></div>
 
-  <script type="text/babel" data-presets="react" data-plugins="transform-modules-umd" src="../PuzzleCaptcha.jsx"></script>
+  <script type="text/babel" data-presets="typescript,react" data-plugins="transform-modules-umd" src="../PuzzleCaptcha.tsx"></script>
 
   <script type="text/babel">
     const defaultState = {
@@ -32,7 +32,11 @@
 
       const handleChange = (e) => {
         const { name, value } = e.target;
-        setProps((p) => ({ ...p, [name]: value }));
+        if (name === 'columns' || name === 'rows') {
+          setProps((p) => ({ ...p, [name]: parseInt(value, 10) }));
+        } else {
+          setProps((p) => ({ ...p, [name]: value }));
+        }
       };
 
       const numberInput = (name) => (
