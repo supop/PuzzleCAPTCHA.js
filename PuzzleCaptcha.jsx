@@ -74,7 +74,7 @@ const CropImage = styled.img`
 /**
  * React version of the original jQuery PuzzleCAPTCHA plugin.
  */
-export default function PuzzleCaptcha({
+function PuzzleCaptcha({
   imageURL = 'http://www.choikangstory.com/test-image.jpg',
   width = 'auto',
   height = 'auto',
@@ -180,3 +180,9 @@ export default function PuzzleCaptcha({
     </Wrapper>
   );
 }
+
+if (typeof window !== 'undefined') {
+  window.PuzzleCaptcha = PuzzleCaptcha;
+}
+
+export default PuzzleCaptcha;

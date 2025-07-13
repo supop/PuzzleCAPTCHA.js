@@ -126,4 +126,7 @@ function App() {
 }
 ```
 
-A demo page that lets you tweak these props in the browser is included at `demo/react-demo.html`.
+A demo page that lets you tweak these props in the browser is included at
+`demo/react-demo.html`. The page loads `PuzzleCaptcha.jsx` directly and compiles
+it in the browser using Babel, so the same component source is shared between
+the demo and your React projects.
