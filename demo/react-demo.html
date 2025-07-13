@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PuzzleCaptcha React Demo</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    form > div { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>PuzzleCaptcha React Demo</h1>
+  <div id="app"></div>
+
+  <script src="PuzzleCaptchaBrowser.js"></script>
+
+  <script type="text/babel">
+    const defaultState = {
+      imageURL: 'http://www.choikangstory.com/test-image.jpg',
+      width: 'auto',
+      height: 'auto',
+      columns: 3,
+      rows: 2
+    };
+
+    function Demo() {
+      const [props, setProps] = React.useState(defaultState);
+
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProps((p) => ({ ...p, [name]: value }));
+      };
+
+      const numberInput = (name) => (
+        <input
+          type="number"
+          name={name}
+          value={props[name]}
+          onChange={handleChange}
+          min="1"
+        />
+      );
+
+      return (
+        <div>
+          <form>
+            <div>
+              <label>
+                Image URL:
+                <input
+                  type="text"
+                  name="imageURL"
+                  value={props.imageURL}
+                  onChange={handleChange}
+                  style={{ width: '400px' }}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Width:
+                <input
+                  type="text"
+                  name="width"
+                  value={props.width}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Height:
+                <input
+                  type="text"
+                  name="height"
+                  value={props.height}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Columns:
+                {numberInput('columns')}
+              </label>
+            </div>
+            <div>
+              <label>
+                Rows:
+                {numberInput('rows')}
+              </label>
+            </div>
+          </form>
+          <hr />
+          <PuzzleCaptcha
+            imageURL={props.imageURL}
+            width={props.width}
+            height={props.height}
+            columns={parseInt(props.columns, 10) || 1}
+            rows={parseInt(props.rows, 10) || 1}
+          />
+        </div>
+      );
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById('app'));
+  </script>
+</body>
+</html>

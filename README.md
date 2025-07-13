@@ -125,3 +125,5 @@ function App() {
   return <PuzzleCaptcha imageURL="http://distilleryimage2.s3.amazonaws.com/c886e1100cbe11e3a77722000a1fbc49_5.jpg" />;
 }
 ```
+
+A demo page that lets you tweak these props in the browser is included at `demo/react-demo.html`.
