@@ -1,0 +1,32 @@
+{
+  "name": "puzzlecaptcha",
+  "version": "1.0.0",
+  "description": "PuzzleCAPTCHA jQuery plugin and React component",
+  "main": "src/jquery/puzzleCAPTCHA.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "captcha",
+    "puzzle",
+    "react",
+    "jquery"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.11"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "vite": "^5.0.0"
+  }
+}

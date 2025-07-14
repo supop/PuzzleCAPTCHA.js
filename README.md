@@ -32,12 +32,12 @@
 	<li>
 		Add the plugin script
 		
-		<pre>&lt;script src="puzzleCAPTCHA.js"&gt;&lt;/script&gt;</pre>
+                <pre>&lt;script src="src/jquery/puzzleCAPTCHA.js"&gt;&lt;/script&gt;</pre>
 		
 	</li>
 	<li>
 		Add the style
-		<pre>&lt;link rel="stylesheet" href="puzzleCAPTCHA.css"&gt;</pre>
+                <pre>&lt;link rel="stylesheet" href="src/jquery/puzzleCAPTCHA.css"&gt;</pre>
 	</li>
 	<li>
 		Add HTML
@@ -111,3 +111,23 @@
 </ul>
 
 
+
+## React Component
+
+A React implementation of PuzzleCAPTCHA is provided in `src/PuzzleCaptcha.tsx`.
+It is written in TypeScript and relies entirely on the `styled-components`
+library for styling, so install that dependency along with React. No additional
+CSS file is required.
+
+```tsx
+import PuzzleCaptcha from './src/PuzzleCaptcha';
+
+function App() {
+  return <PuzzleCaptcha imageURL="http://distilleryimage2.s3.amazonaws.com/c886e1100cbe11e3a77722000a1fbc49_5.jpg" />;
+}
+```
+
+A demo built with [Vite](https://vitejs.dev/) lives in `demo/vite-demo`. After
+installing dependencies run `npm run dev` and open the printed URL to tweak the
+props interactively. The demo imports `src/PuzzleCaptcha.tsx` directly so the
+same component source is shared between the demo and your React projects.
